@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { ChangeEvent } from "react";
 import Beer from "./Beer";
 
 interface State {
@@ -6,28 +6,52 @@ interface State {
   inputValue: string;
 }
 
-export default class Beerlist extends React.Component {
+interface Props {}
+
+export default class Beerlist extends React.Component<Props> {
   state: State = {
-    beers: [],
-    inputValue: this.state.beers.,
+    beers: ["Coreff", "Corona", "Mort Subite"],
+    inputValue: "",
   };
+  static defaultState: State = {
+    beers: ["Coreff", "Corona", "Mort Subite"],
+    inputValue: "",
+  };
+  constructor(props: Props) {
+    super(props);
+
+    this.state = Beerlist.defaultState;
+  }
 
   deleteBeer = (index: number) => {
-    this.state.beers.slice(index);
-  };
+    const beersList = this.state.beers;
 
-  addBeer = () => {
-    this.state.beers.push(this.state.inputValue);
+    beersList.splice(index, 1);
+    this.setState({
+      beers: beersList,
+      inputValue: this.state.inputValue,
+    });
   };
-  updateInputValue = () => {
-    this.state.inputValue = "";
+  addBeer = () => {
+    const beerList = this.state.beers;
+    beerList.push(this.state.inputValue);
+    this.setState({
+      beers: beerList,
+      inputValue: "",
+    });
+  };
+  updateInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      beers: this.state.beers,
+      inputValue: e.target.value,
+    });
   };
   render() {
     return (
       <div>
         <h1>The list of beers</h1>
         <ul>
-          {this.state.beers.map((beer, index) => (
+          {this.state.beers.map((beer: any, index: number) => (
             <li key={index}>
               <Beer name={beer} />
               <button onClick={() => this.deleteBeer(index)}>Remove</button>
@@ -36,12 +60,11 @@ export default class Beerlist extends React.Component {
         </ul>
         <input
           type="text"
-          name="addbutton"
-          placeholder="add Beer"
+          placeholder="Write your favorite Beer"
           value={this.state.inputValue}
           onChange={this.updateInputValue}
         />
-        <button onClick={this.addBeer}>Add</button>
+        <button onClick={this.addBeer}>Add Beer</button>
       </div>
     );
   }

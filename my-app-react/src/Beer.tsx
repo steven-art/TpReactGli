@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
 interface Props {
   name: string;
 }
 export default class Beer extends React.Component<Props> {
   static defaultProps: Props = {
-    name: "",
+    name: "beer",
   };
+  render() {
+    return <p>{this.props.name}</p>;
+  }
 }

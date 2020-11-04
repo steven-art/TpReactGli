@@ -1,3 +1,33 @@
+# Tp reactJS GLI: Réalisation d'une liste de bières.
+
+Auteur: Steven Tanguy
+Formation: Master 2 CCN
+
+---
+
+Objectif:  
+Prendre en main le framwork reactJS en créant un composant qui liste les bières.
+
+---
+
+Fonctionnalité:  
+Ajoute de bière: elle se fait grâce à la méthode addBeer qui est appeler dans le render du composant dans le bouton "Add Beer".
+Cette méthode permet d'ajouter le nom de la biere ecrite dans la balise input avec un index dans une beerList et le this.setState permet de remettre le input a vide et de mettre à jour la la liste de bière.
+
+Suppimer des bières: grâce à la méthode deleteBeer qui est construite de la même manière que addBeer et appeler dans le bouton remove il est possible de supprimé les bières de la liste.
+
+Une classe beer permet de passer le composant beer et le nom dans une balise li pour afficher notre nouvelle bière ajoutée.
+
+```
+ <li key={index}>
+              <Beer name={beer} />
+              <button onClick={() => this.deleteBeer(index)}>Remove</button>
+ </li>
+```
+
+Pour la partie routing j'ai essayer de la mettre en place en suivant les instruction du site : https://www.codingame.com/playgrounds/6517/react-router-tutorial
+J'ai retirer se que j'avais faire car ça empechait ma liste de fonctionner
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
